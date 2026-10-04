@@ -5,6 +5,46 @@ import models
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
+
+
+def initialize_database():
+    db = SessionLocal()
+
+    try:
+        if db.query(models.Supplier).count() == 0:
+            db.add_all([
+                models.Supplier(name="Supplier A", component="Battery", deliveryDelay=6, inventoryDays=3, risk="High"),
+                models.Supplier(name="Supplier B", component="Display", deliveryDelay=2, inventoryDays=12, risk="Low"),
+                models.Supplier(name="Supplier C", component="RAM", deliveryDelay=4, inventoryDays=7, risk="Medium"),
+                models.Supplier(name="Supplier D", component="Processor", deliveryDelay=1, inventoryDays=15, risk="Low")
+            ])
+
+        if db.query(models.Product).count() == 0:
+            db.add_all([
+                models.Product(name="Laptop Pro", components="Battery, Display, RAM, Processor", productionPerDay=500),
+                models.Product(name="Laptop Air", components="Battery, Display, RAM, Processor", productionPerDay=300),
+                models.Product(name="Business Laptop", components="Battery, Display, RAM, Processor", productionPerDay=200)
+            ])
+
+        if db.query(models.DeliveryEvent).count() == 0:
+            db.add_all([
+                models.DeliveryEvent(supplierName="Supplier A", component="Battery", expectedDays=4, actualDays=7, status="Delayed"),
+                models.DeliveryEvent(supplierName="Supplier A", component="Battery", expectedDays=4, actualDays=6, status="Delayed"),
+                models.DeliveryEvent(supplierName="Supplier A", component="Battery", expectedDays=4, actualDays=5, status="Delayed"),
+                models.DeliveryEvent(supplierName="Supplier B", component="Display", expectedDays=3, actualDays=3, status="On Time"),
+                models.DeliveryEvent(supplierName="Supplier B", component="Display", expectedDays=3, actualDays=4, status="Delayed"),
+                models.DeliveryEvent(supplierName="Supplier C", component="RAM", expectedDays=5, actualDays=7, status="Delayed"),
+                models.DeliveryEvent(supplierName="Supplier C", component="RAM", expectedDays=5, actualDays=5, status="On Time"),
+                models.DeliveryEvent(supplierName="Supplier D", component="Processor", expectedDays=2, actualDays=2, status="On Time")
+            ])
+
+        db.commit()
+    finally:
+        db.close()
+
+
+initialize_database()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
