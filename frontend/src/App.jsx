@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+const API_URL = 'https://team-atlas-supply-chain.onrender.com'
 
 function App() {
   const [backendSuppliers, setBackendSuppliers] = useState([])
@@ -11,7 +12,7 @@ function App() {
   const [backendRecommendations, setBackendRecommendations] = useState([])
   const [backendReliability, setBackendReliability] = useState([])
   useEffect(() => {
-  fetch('http://127.0.0.1:8000/suppliers')
+  fetch(`${API_URL}/suppliers`)
     .then((response) => response.json())
     .then((data) => {
       setBackendSuppliers(data)
@@ -19,7 +20,7 @@ function App() {
     })
 }, [])
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/products')
+  fetch(`${API_URL}/products`)
     .then((response) => response.json())
     .then((data) => {
       setBackendProducts(data)
@@ -27,7 +28,7 @@ useEffect(() => {
     })
 }, [])
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/risk-analysis')
+  fetch(`${API_URL}/risk-analysis`)
     .then((response) => response.json())
     .then((data) => {
       setBackendRiskData(data)
@@ -36,7 +37,7 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/dashboard')
+  fetch(`${API_URL}/dashboard`)
     .then((response) => response.json())
     .then((data) => {
       setBackendDashboard(data)
@@ -45,7 +46,7 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/simulation')
+  fetch(`${API_URL}/simulation`)
     .then((response) => response.json())
     .then((data) => {
       setBackendSimulation(data)
@@ -53,7 +54,7 @@ useEffect(() => {
     })
 }, [])
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/simulation/mitigation')
+  fetch(`${API_URL}/simulation/mitigation`)
     .then((response) => response.json())
     .then((data) => {
       setBackendMitigation(data)
@@ -61,7 +62,7 @@ useEffect(() => {
     })
 }, [])
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/recommendations')
+  fetch(`${API_URL}/recommendations`)
     .then((response) => response.json())
     .then((data) => {
       setBackendRecommendations(data)
@@ -69,7 +70,7 @@ useEffect(() => {
     })
 }, [])
 useEffect(() => {
-  fetch('http://127.0.0.1:8000/supplier-reliability')
+  fetch(`${API_URL}/supplier-reliability`)
     .then((response) => response.json())
     .then((data) => {
       setBackendReliability(data)
