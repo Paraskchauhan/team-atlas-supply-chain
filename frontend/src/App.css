@@ -1,0 +1,97 @@
+.app {
+  min-height: 100vh;
+  background: #1c5197;
+  color: #172033;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.header p {
+  color: #667085;
+  margin-top: 8px;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: rgb(230, 248, 235);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  color: #667085;
+  font-size: 15px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(140, 33, 33);
+  padding: 16px 24px;
+  border-radius: 12px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links button {
+  border: none;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-links button:hover {
+  background: #26519a;
+}
+
+
+
+.status-card {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.status-card p {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 8px 0;
+}
