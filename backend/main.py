@@ -3,8 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base, SessionLocal
 import models
 
+
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
+
 
 
 def initialize_database():
@@ -43,18 +45,21 @@ def initialize_database():
         db.close()
 
 
-initialize_database()
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173",
-                   "http://localhost:5174",
-                   "https://team-atlas-supply-chain-1.onrender.com"
-                   ],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+        "https://team-atlas-supply-chain-1.onrender.com",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 def home():
@@ -683,3 +688,5 @@ def get_recommendations():
     db.close()
 
     return recommendations
+
+initialize_database()
